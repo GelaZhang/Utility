@@ -1,6 +1,6 @@
 /* 
  * filename : identity_master.h
- * author   : sundayman
+ * author   : sundayman66@gmail.com
  * date     : Jun 18, 2012
  * brief    : 
  */

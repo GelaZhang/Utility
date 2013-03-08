@@ -166,10 +166,12 @@ WINAPI startHook(void* arg)
         {
             cerr << thread->name() << " terminating" << endl;
         }
+#if _DEBUG
 #if defined(_MSC_VER) && (_MSC_VER < 1300)
         terminate();
 #else
 	std::terminate();
+#endif
 #endif
     }
 
@@ -230,15 +232,14 @@ Utility::Thread::start(size_t stackSize, int priority)
     {
         Release();
         throw exception("SetThreadPriority fail");
-    }
+	} 
+	_started = true;
+	_running = true;
     if(ResumeThread(_handle) == -1)
     {
         Release();
         throw exception("ResumeThread fail");
     }
-
-    _started = true;
-    _running = true;
     
     return ThreadControl(_handle, _id);
 }
